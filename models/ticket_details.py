@@ -87,6 +87,13 @@ def get_detail(ticket_list):
         current_time = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
         current_time = datetime.strptime(f'{current_time}', "%Y-%m-%dT%H:%M:%SZ")
         print("current time: ", current_time)
+        if 'Z' not in str(updated_at):
+            updated_at = str(updated_at)
+            updated_at = updated_at.split(' ')
+            updated_at = f'{updated_at[0]}T{updated_at[1]}Z'
+        else:
+            updated_at = updated_at
+        print("updated at: ", updated_at)
         updated_at = datetime.strptime(f'{updated_at}', "%Y-%m-%dT%H:%M:%SZ")
         # try:
         #     updated_at = datetime.strptime(f'{updated_at}', "%Y-%m-%dT%H:%M:%SZ")
